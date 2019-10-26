@@ -1,0 +1,361 @@
+{
+  "model_meta": {
+    "author": {
+      "email": "gaugoswa@in.ibm.com",
+      "name": "IBM"
+    },
+    "description": "Predicts if a home loan offer should be generated for a customer or not",
+    "evaluation": {
+      "method": "binary",
+      "metrics": [
+        {
+          "name": "areaUnderROC",
+          "threshold": 0.7,
+          "value": 0.84
+        }
+      ]
+    },
+    "framework": {
+      "name": "mllib",
+      "runtimes": [
+        {
+          "name": "spark",
+          "version": "2.3"
+        }
+      ],
+      "version": "2.3"
+    },
+    "input_data_schema": {
+      "fields": [
+        {
+          "metadata": {
+            "modeling_role": "feature"
+          },
+          "name": "holdings",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "metadata": {
+            "modeling_role": "feature"
+          },
+          "name": "total_loans",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "metadata": {
+            "modeling_role": "feature"
+          },
+          "name": "total_emi",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "metadata": {
+            "modeling_role": "feature"
+          },
+          "name": "cc_dues",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "metadata": {
+            "modeling_role": "feature"
+          },
+          "name": "personal_loan",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {
+            "modeling_role": "feature"
+          },
+          "name": "credit_card",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {
+            "modeling_role": "feature"
+          },
+          "name": "car_loan",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {
+            "modeling_role": "feature"
+          },
+          "name": "two_wheeler_loan",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {
+            "modeling_role": "feature"
+          },
+          "name": "overdraft_loan",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {
+            "modeling_role": "feature"
+          },
+          "name": "cibil",
+          "nullable": true,
+          "type": "integer"
+        }
+      ],
+      "type": "struct"
+    },
+    "label_column": "home_loan",
+    "name": "Home Loan Model",
+    "output_data_schema": {
+      "fields": [
+        {
+          "metadata": {
+            "modeling_role": "feature"
+          },
+          "name": "holdings",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "metadata": {
+            "modeling_role": "feature"
+          },
+          "name": "total_loans",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "metadata": {
+            "modeling_role": "feature"
+          },
+          "name": "total_emi",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "metadata": {
+            "modeling_role": "feature"
+          },
+          "name": "cc_dues",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "metadata": {
+            "measure": "discrete",
+            "modeling_role": "feature"
+          },
+          "name": "personal_loan",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {
+            "modeling_role": "feature"
+          },
+          "name": "credit_card",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {
+            "measure": "discrete",
+            "modeling_role": "feature"
+          },
+          "name": "car_loan",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {
+            "measure": "discrete",
+            "modeling_role": "feature"
+          },
+          "name": "two_wheeler_loan",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {
+            "measure": "discrete",
+            "modeling_role": "feature"
+          },
+          "name": "overdraft_loan",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {
+            "modeling_role": "feature"
+          },
+          "name": "cibil",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {
+            "modeling_role": "rawPrediction"
+          },
+          "name": "rawPrediction",
+          "nullable": true,
+          "type": {
+            "containsNull": true,
+            "elementType": "double",
+            "type": "array"
+          }
+        },
+        {
+          "metadata": {
+            "modeling_role": "probability"
+          },
+          "name": "probability",
+          "nullable": true,
+          "type": {
+            "containsNull": true,
+            "elementType": "double",
+            "type": "array"
+          }
+        },
+        {
+          "metadata": {
+            "modeling_role": "prediction",
+            "values": [0.0,1.0]
+          },
+          "name": "prediction",
+          "nullable": true,
+          "type": "double"
+        }
+      ],
+      "type": "struct"
+    },
+    "training_data_reference": [
+      {
+        "connection": {
+          "db": "BLUDB",
+          "host": "dashdb-txn-sbox-yp-dal09-04.services.dal.bluemix.net",
+          "password": "wd668-6x7502ktbx",
+          "username": "pqf37867"
+        },
+        "name": "Home loan model training data",
+        "source": {
+          "tablename": "HOME_LOAN_DATA",
+          "type": "dashdb"
+        }
+      }
+    ],
+    "training_data_schema": {
+      "fields": [
+        {
+        "metadata": {},
+          "name": "holdings",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "metadata": {},
+          "name": "total_loans",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "metadata": {},
+          "name": "total_emi",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "metadata": {},
+          "name": "cc_dues",
+          "nullable": true,
+          "type": "double"
+        },
+        {
+          "metadata": {},
+          "name": "personal_loan",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {},
+          "name": "credit_card",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {},
+          "name": "car_loan",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {},
+          "name": "two_wheeler_loan",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {},
+          "name": "overdraft_loan",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {},
+          "name": "cibil",
+          "nullable": true,
+          "type": "integer"
+        },
+        {
+          "metadata": {
+            "modeling_role": "target",
+            "values": [0.0,1.0]
+          },
+          "name": "home_loan",
+          "nullable": true,
+          "type": "integer"
+        }
+      ],
+      "type": "struct"
+    },
+    "training_definition_url": "$Location$"
+  },
+  "pipeline_meta": {
+    "author": {
+      "email": "gaugoswa@in.ibm.com",
+      "name": "IBM"
+    },
+    "description": "Defines model to determine if a home loan is offered to a customer or not.",
+    "framework": {
+      "name": "mllib",
+      "runtimes": [
+        {
+          "name": "spark",
+          "version": "2.3"
+        }
+      ],
+      "version": "2.3"
+    },
+    "name": "Home Loan Model",
+     "training_data_reference": [
+      {
+        "connection": {
+          "db": "BLUDB",
+          "host": "dashdb-txn-sbox-yp-dal09-04.services.dal.bluemix.net",
+          "password": "wd668-6x7502ktbx",
+          "username": "pqf37867"
+        },
+        "name": "Home loan model training data",
+        "source": {
+          "tablename": "HOME_LOAN_DATA",
+          "type": "dashdb"
+        }
+      }
+    ]
+  }
+}
